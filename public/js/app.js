@@ -50353,7 +50353,7 @@ var app = new Vue({
               case 0:
                 _this.error_count++;
 
-                if (!(error.response.status === 401 && _this.error_count < 10 && _this.$passport.getRefreshToken())) {
+                if (!(error.response.status === 401 && _this.error_count < 3 && _this.$passport.getRefreshToken())) {
                   _context.next = 9;
                   break;
                 }
@@ -50541,7 +50541,7 @@ passport.install = function (vue, options) {
     var data = {
       grant_type: 'refresh_token',
       client_id: '2',
-      client_secret: 'PqFvDapAoL0GY1Sr03kqhOaalSZIAB3EqZCm0UPE',
+      client_secret: 'VT3VrgJ7g9VhfHQKklZmIPj7qlum648kpN3u0GDX',
       refresh_token: $passport.getRefreshToken(),
       scope: ''
     };
@@ -50558,7 +50558,7 @@ passport.install = function (vue, options) {
     var defaultData = {
       grant_type: 'password',
       client_id: '2',
-      client_secret: 'PqFvDapAoL0GY1Sr03kqhOaalSZIAB3EqZCm0UPE',
+      client_secret: 'VT3VrgJ7g9VhfHQKklZmIPj7qlum648kpN3u0GDX',
       scope: ''
     };
     var data = Object.assign(defaultData, user);
@@ -50601,8 +50601,8 @@ passport.install = function (vue, options) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\erik_\Documents\dev\cursos\son\dp\laravel-vue-refresh-token\p\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\erik_\Documents\dev\cursos\son\dp\laravel-vue-refresh-token\p\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\PHP\lfb-api\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\PHP\lfb-api\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

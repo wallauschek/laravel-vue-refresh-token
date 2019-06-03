@@ -18,7 +18,7 @@ const app = new Vue({
     beforeMount() {
         axios.interceptors.response.use(null, async (error) => {
             this.error_count ++;
-            if (error.response.status === 401 && this.error_count < 10 && this.$passport.getRefreshToken()) {
+            if (error.response.status === 401 && this.error_count < 3 && this.$passport.getRefreshToken()) {
 
                 const data = await this.$passport.refreshToken();
                 error.config.headers.Authorization = 'Bearer ' + data.access_token;

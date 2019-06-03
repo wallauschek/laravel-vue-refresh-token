@@ -16,11 +16,11 @@ passport.install = function (vue, options) {
         const data = {
             grant_type: 'refresh_token',
             client_id: '2',
-            client_secret: 'PqFvDapAoL0GY1Sr03kqhOaalSZIAB3EqZCm0UPE',
+            client_secret: 'VT3VrgJ7g9VhfHQKklZmIPj7qlum648kpN3u0GDX',
             refresh_token: $passport.getRefreshToken(),
             scope: ''
         };
-        
+
         return axios.post('/oauth/token', data).then((res) => {
             console.log('token atualizado');
             cookies.set('access_token', res.data.access_token);
@@ -35,11 +35,11 @@ passport.install = function (vue, options) {
         const defaultData = {
             grant_type: 'password',
             client_id: '2',
-            client_secret: 'PqFvDapAoL0GY1Sr03kqhOaalSZIAB3EqZCm0UPE',
+            client_secret: 'VT3VrgJ7g9VhfHQKklZmIPj7qlum648kpN3u0GDX',
             scope: ''
         };
         const data = Object.assign(defaultData, user);
-        
+
         axios.post('/oauth/token', data).then((res) => {
             console.log('autenticado');
             cookies.set('access_token', res.data.access_token);
