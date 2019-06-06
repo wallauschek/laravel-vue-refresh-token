@@ -9,10 +9,10 @@
                         <form @submit.prevent="auth()">
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                <label for="username" class="col-md-4 col-form-label text-md-right">Usuário</label>
 
                                 <div class="col-md-6">
-                                    <input v-model="authData.username" id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus>
+                                    <input v-model="authData.username" id="username" type="text" class="form-control" name="username" required autocomplete="username" autofocus>
                                 </div>
                             </div>
 

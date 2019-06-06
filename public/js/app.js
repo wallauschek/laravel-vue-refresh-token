@@ -38030,9 +38030,9 @@ var render = function() {
                     "label",
                     {
                       staticClass: "col-md-4 col-form-label text-md-right",
-                      attrs: { for: "email" }
+                      attrs: { for: "username" }
                     },
-                    [_vm._v("Email")]
+                    [_vm._v("Usuário")]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-md-6" }, [
@@ -38047,11 +38047,11 @@ var render = function() {
                       ],
                       staticClass: "form-control",
                       attrs: {
-                        id: "email",
-                        type: "email",
-                        name: "email",
+                        id: "username",
+                        type: "text",
+                        name: "username",
                         required: "",
-                        autocomplete: "email",
+                        autocomplete: "username",
                         autofocus: ""
                       },
                       domProps: { value: _vm.authData.username },
