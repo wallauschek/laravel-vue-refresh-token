@@ -6,15 +6,10 @@ use RuntimeException;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use Laravel\Passport\Bridge\User;
+use Zend\Soap\Client as SoapClient;
 
 class UserRepository implements UserRepositoryInterface
 {
-    /**
-     * The hasher implementation.
-     *
-     * @var \Illuminate\Hashing\HashManager
-     */
-    // protected $hasher;
 
     /**
      * Create a new repository instance.
@@ -39,7 +34,7 @@ class UserRepository implements UserRepositoryInterface
         }
 
 
-        $client = new \Zend\Soap\Client('http://177.184.8.118/TOTVSBusinessConnect/wsEdu.asmx?wsdl');
+        $client = new SoapClient('http://177.184.8.118/TOTVSBusinessConnect/wsEdu.asmx?wsdl');
         $autentica = $client->AutenticarSenhaUsuario([
             'Login' => $username,
             'senha' => $password
@@ -48,24 +43,23 @@ class UserRepository implements UserRepositoryInterface
         if (! $autentica) {
             return;
         } elseif (! $user = (new $model)->where('username', $username)->first()) {
-
-            $client = new \Zend\Soap\Client('http://177.184.8.118/TOTVSBusinessConnect/wsConsultaSQL.asmx?wsdl');
+            $client = new SoapClient('http://177.184.8.118/TOTVSBusinessConnect/wsConsultaSQL.asmx?wsdl');
             $consulta = $client->RealizarConsultaSQLAuth([
                 'Usuario' => env('SOAP_USER'),
                 'Senha' => env('SOAP_PASSWORD'),
-                'codSentenca' => 'WS_PEDAGOGICO_01',
+                'codSentenca' => 'WS_LFB_01',
                 'codColigada' => 0,
                 'codAplicacao' => 'S',
-                'parameters' => 'ESCOLA=5;USU=' . $username
+                'parameters' => 'USUARIO=' . $username
             ]);
 
             $json = json_decode(json_encode(simplexml_load_string($this->removeNamespaceFromXML($consulta->RealizarConsultaSQLAuthResult))), true);
-            dd($json['Resultado']);
+            // dd($json['Resultado']['NOME']);
 
             $user = (new $model)::create([
-                'name' => 'João da Silva',
-                'email' => 'joao@test.com',
-                'username' => $username
+                'name' => $json['Resultado']['NOME'],
+                'email' => $json['Resultado']['EMAIL'],
+                'username' => $json['Resultado']['CODUSUARIO']
             ]);
         }
 
